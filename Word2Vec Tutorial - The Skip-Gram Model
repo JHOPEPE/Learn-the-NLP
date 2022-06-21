@@ -1,0 +1,32 @@
+tutorial link:
+http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/
+
+中英文摘要
+
+The skip-gram neural network model is actually surprisingly simple in its most basic form; 
+I think it’s all of the little tweaks and enhancements that start to clutter the explanation.因为细小的改变和强化，才让解释变得困难。这一点也是skip-gram neural network的难解释点。
+
+We’re going to train a simple neural network with a single hidden layer to perform a certain task, 
+but then we’re not actually going to use that neural network for the task we trained it on! 
+Instead, the goal is actually just to learn the weights of the hidden layer–we’ll see that these weights are actually the “word vectors” that we’re trying to learn.
+这里很trick的一点就是，我们这里用到的neural network的目的，并不是得到一个output，而是希望得到hidden layer中的weights，这个实际上就是我们希望得到的“word vectors”。
+【类似的例子】
+Another place you may have seen this trick is in unsupervised feature learning, where you train an auto-encoder to compress an input vector in the hidden layer, 
+and decompress it back to the original in the output layer. After training it, 
+you strip off the output layer (the decompression step) and just use the hidden layer--it's a trick for learning good image features without having labeled training data.
+
+【Fake task】
+We’re going to train the neural network to do the following. Given a specific word in the middle of a sentence (the input word), 
+look at the words nearby and pick one at random. 
+The network is going to tell us the probability for every word in our vocabulary of being the “nearby word” that we chose.我们需要nn（neural network）
+告诉我们在我们词汇库中的每一个词，成为我们选择的这个“词A”的“临近词B”的概率。
+{near by：When I say "nearby", there is actually a "window size" parameter to the algorithm. 
+A typical window size might be 5, meaning 5 words behind and 5 words ahead (10 in total).窗口size，前五个词，后五个词。}
+Example：
+For example, if you gave the trained network the input word “Soviet”, 
+the output probabilities are going to be much higher for words like “Union” and “Russia” than for unrelated words like “watermelon” and “kangaroo”.
+Picture link: http://mccormickml.com/assets/word2vec/training_data.png
+
+【Model Details】
+
+
